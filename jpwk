@@ -40,9 +40,11 @@ import io
 import tokenize
 
 # import stdin for quick access to pipe'd inputs
-# Oh look at that, it's a string now!
-stdin: str = original_stdin.read()
-
+if not sys.stdin.isatty():
+    # Oh look at that, it's a string now!
+    stdin = original_stdin.read()
+else:
+    stdin = original_stdin
 
 def pwk2p(code: str) -> str:
     ret = ""
